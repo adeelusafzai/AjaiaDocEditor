@@ -3,5 +3,7 @@
   "installCommand": "npm install",
   "buildCommand": "npm --workspace web run build",
   "outputDirectory": "web/dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
 }
