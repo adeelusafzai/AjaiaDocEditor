@@ -22,6 +22,9 @@
   "devDependencies": {
     "concurrently": "^9.1.0"
   },
+  "overrides": {
+    "htmlparser2": "8.0.2"
+  },
   "engines": {
     "node": ">=20"
   }
