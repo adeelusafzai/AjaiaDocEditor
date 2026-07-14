@@ -1,0 +1,16 @@
+Walkthrough video (3–5 minutes)
+================================
+
+URL: <paste your unlisted Loom / YouTube / Vimeo link here>
+
+Suggested outline to record:
+1. Sign in as Alice (demo account) and show the dashboard: "My documents" vs "Shared with me".
+2. Create a new document, rename it inline, and use the toolbar (bold, italic, underline, heading,
+   lists). Point out the autosave status indicator.
+3. Import a .md or .docx file and show it become a new formatted document.
+4. Share a document with Bob as "editor" and Carol as "viewer".
+5. In an incognito window, sign in as Bob: the doc appears under "Shared with me"; edit it.
+6. Sign in as Carol: same doc is read-only (view only), editing is blocked.
+7. Briefly show: refresh preserves content; the architecture (React + Express + Postgres) and the
+   passing test suite.
+8. Close with what you intentionally deprioritized and how AI supported the build.

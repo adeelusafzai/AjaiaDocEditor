@@ -1,0 +1,34 @@
+# Render blueprint: provisions the API web service + a managed Postgres.
+# Deploy: push to GitHub, then in Render choose "New +" -> "Blueprint" and pick this repo.
+# After the API is live, set CORS_ORIGIN to your Vercel URL (see README).
+databases:
+  - name: ajaia-docs-db
+    databaseName: docs
+    user: docs
+    plan: free
+
+services:
+  - type: web
+    name: ajaia-docs-api
+    runtime: node
+    plan: free
+    # Build/run from the repo root using workspace-aware npm commands.
+    buildCommand: npm install --workspace server && npm --workspace server run db:setup && npm --workspace server run db:seed
+    startCommand: npm --workspace server start
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ajaia-docs-db
+          property: connectionString
+      - key: PGSSL
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: NODE_ENV
+        value: production
+      # Set this to your deployed web origin (Vercel URL) once known.
+      - key: CORS_ORIGIN
+        sync: false

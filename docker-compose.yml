@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: ajaia_docs_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: docs
+      POSTGRES_PASSWORD: docs
+      POSTGRES_DB: docs
+    ports:
+      # Host 5433 -> container 5432 to avoid clashing with a local Postgres on 5432.
+      - "5433:5432"
+    volumes:
+      - ajaia_docs_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U docs -d docs"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  ajaia_docs_pgdata:
